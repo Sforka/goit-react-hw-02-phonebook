@@ -26,13 +26,10 @@ export class App extends Component {
     const name = e.name;
     const number = e.number;
     const contactsLists = [...this.state.contacts];
-
+    
     if (
-      contactsLists.findIndex(
-        contact =>
-          name.toLowerCase().replace(/ /g, '') ===
-          contact.name.toLowerCase().replace(/ /g, '')
-      ) !== -1
+      contactsLists.findIndex(contact => name.toLowerCase() === contact.name.toLowerCase()) !==
+      -1
     ) {
       alert(`${name} is already in contacts.`);
     } else {
