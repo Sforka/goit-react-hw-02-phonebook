@@ -22,7 +22,7 @@ export class App extends Component {
   };
 
   contactsSubmit = e => {
-    const id = nanoid;
+    const id = nanoid();
     const name = e.name;
     const number = e.number;
     const contactsLists = [...this.state.contacts];
@@ -54,6 +54,19 @@ export class App extends Component {
      });
     return filterContactsList;
   };
+  componentDidMount() {
+    if (localStorage.contact) {
+      let localContacts = JSON.parse(localStorage.getItem('contact'))
+      this.setState({ contacts: localContacts })
+      console.log(this.state.contacts);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.setState.contacts !== prevState.contacts) {
+      localStorage.setItem("contact", JSON.stringify(this.state.contacts))
+    }
+  }
 
   render() {
     return (
